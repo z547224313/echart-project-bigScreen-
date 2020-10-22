@@ -25,84 +25,274 @@ const myChart5 = echarts.init(document.getElementById("distributeByStatusChart")
 const myChart6 = echarts.init(document.getElementById("distributeByServerChart"));
 // 按装备类型分布
 let distributeByTypeChart = function() {
-  let option = {
+  let option2  = {
     tooltip: {
-      trigger: 'item',
-      formatter: "{a} <br/>{b}: {c} ({d}%)"
+      formatter: '{a} <br/>{c} {b}'
     },
-    graphic:{
-      type: 'text',
-      left: 'center', // 相对父元素居中
-      top: 'middle',  // 相对父元素居中
-      style: {
-          fill: 'white',
-          text: [125876],
-          fontSize: '28',        
+    toolbox: {
+      show: false,
+      feature: {
+        mark: {show: true},
+        restore: {show: true},
+        saveAsImage: {show: true}
       }
     },
     series: [
       {
-        name: "",
-        type: "pie",
-        hoverAnimation: true,
-        radius: ["50%", "70%"],
-        avoidLabelOverlap: false,
-        label: {
-          formatter:'{a|{d}%}\n{b}',
-          show: true,
-          position: "outside",
-          color:'#15a7f1',
-          verticalAlign:'top',
-          rich:{
-            a:{
-              color: 'white',
-              lineHeight: 22,
-              align: 'left',
-            },
-            
+        name: 'CPU资源',
+        type: 'gauge',
+        min: 0,
+        max: 100,
+        splitNumber: 5,
+        radius: '80 %',
+        axisLine: {            // 坐标轴线
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: [[0.09, 'lime'], [0.82, '#1e90ff'], [1, '#ff4500']],
+            width: 2,
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
           }
         },
-        labelLine: {
-          show: true,
-          length:20,
-          length2:50,
-          lineStyle:{
-            color:'#15a7f1',
+        axisLabel: {            // 坐标轴小标记
+          fontWeight: 'bolder',
+          color: '#fff',
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 10
+        },
+        axisTick: {            // 坐标轴小标记
+          length: 10,        // 属性length控制线长
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: 'auto',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
           }
         },
-        data: [
-          {
-            value: 22,
-            name: "投影仪",
-            itemStyle:{
-              color:'#906eff'
-            }           
-          },
-          { value: 28, name: "班班通",
-            itemStyle:{
-              color:'#28befe'
-            }  
-          },
-          { value: 22, name: "麦克风",
-            itemStyle:{
-              color:'#16e1e9'
-            } 
-          },
-          { value: 10, name: "终端主机",
-            itemStyle:{
-              color:'#10dd93'
-            } 
-          },
-          { value: 18, name: "电视机",
-            itemStyle:{
-              color:'#f6bb64'
-            } 
-         }
-        ]
+        splitLine: {           // 分隔线
+          length: 10,         // 属性length控制线长
+          lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+            width: 3,
+            color: '#fff',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        pointer: {           // 分隔线
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 5
+        },
+        title: {
+          textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            fontWeight: 'bolder',
+            fontSize: 10,
+            fontStyle: 'italic',
+            color: '#fff',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        detail: {
+          backgroundColor: 'rgba(30,144,255,0.8)',
+          borderWidth: 1,
+          borderColor: '#fff',
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 5,
+          offsetCenter: [0, '50%'],       // x, y，单位px
+          textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            fontWeight: 'bolder',
+            color: '#fff'
+          }
+        },
+        data: [{value: 40, name: 'CPU'}]
+      },
+      {
+        name: '转速',
+        type: 'gauge',
+        center: ['25%', '55%'],    // 默认全局居中
+        radius: '60%',
+        min: 0,
+        max: 7,
+        endAngle: 45,
+        splitNumber: 7,
+        axisLine: {            // 坐标轴线
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: [[0.29, 'lime'], [0.86, '#1e90ff'], [1, '#ff4500']],
+            width: 2,
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        axisLabel: {            // 坐标轴小标记
+          fontWeight: 'bolder',
+          color: '#fff',
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 10
+        },
+        axisTick: {            // 坐标轴小标记
+          length: 12,        // 属性length控制线长
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: 'auto',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        splitLine: {           // 分隔线
+          length: 20,         // 属性length控制线长
+          lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+            width: 3,
+            color: '#fff',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        pointer: {
+          width: 5,
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 5
+        },
+        title: {
+          offsetCenter: [0, '-30%'],       // x, y，单位px
+          textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            fontWeight: 'bolder',
+            fontStyle: 'italic',
+            color: '#fff',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        detail: {
+          borderColor: '#fff',
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 5,
+          width: 80,
+          height: 30,
+          offsetCenter: [25, '20%'],       // x, y，单位px
+          textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+            fontWeight: 'bolder',
+            color: '#fff'
+          }
+        },
+        data: [{value: 1.5, name: 'x1000 r/min'}]
+      },
+      {
+        name: '油表',
+        type: 'gauge',
+        center: ['75%', '50%'],    // 默认全局居中
+        radius: '60%',
+        min: 0,
+        max: 2,
+        startAngle: 135,
+        endAngle: 45,
+        splitNumber: 2,
+        axisLine: {            // 坐标轴线
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: [[0.2, 'lime'], [0.8, '#1e90ff'], [1, '#ff4500']],
+            width: 2,
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        axisTick: {            // 坐标轴小标记
+          length: 12,        // 属性length控制线长
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: 'auto',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        axisLabel: {
+          fontWeight: 'bolder',
+          color: '#fff',
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 10,
+          formatter: function (v){
+            switch (v + '') {
+              case '0': return 'E';
+              case '1': return 'Gas';
+              case '2': return 'F';
+            }
+          }
+        },
+        splitLine: {           // 分隔线
+          length:15,         // 属性length控制线长
+          lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+            width:3,
+            color: '#fff',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        pointer: {
+          width:2,
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 5
+        },
+        title: {
+          show: false
+        },
+        detail: {
+          show: false
+        },
+        data: [{value: 0.5, name: 'gas'}]
+      },
+      {
+        name: '水表',
+        type: 'gauge',
+        center: ['75%', '50%'],    // 默认全局居中
+        radius: '30%',
+        min: 0,
+        max: 2,
+        startAngle: 315,
+        endAngle: 225,
+        splitNumber: 2,
+        axisLine: {            // 坐标轴线
+          lineStyle: {       // 属性lineStyle控制线条样式
+            color: [[0.2, 'lime'], [0.8, '#1e90ff'], [1, '#ff4500']],
+            width: 2,
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        axisTick: {            // 坐标轴小标记
+          show: false
+        },
+        axisLabel: {
+          fontWeight: 'bolder',
+          color: '#fff',
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 10,
+          formatter: function(v){
+            switch (v + '') {
+              case '0': return 'H';
+              case '1': return 'Water';
+              case '2': return 'C';
+            }
+          }
+        },
+        splitLine: {           // 分隔线
+          length: 15,         // 属性length控制线长
+          lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+            width: 3,
+            color: '#fff',
+            shadowColor: '#fff', //默认透明
+            shadowBlur: 10
+          }
+        },
+        pointer: {
+          width: 2,
+          shadowColor: '#fff', //默认透明
+          shadowBlur: 5
+        },
+        title: {
+          show: false
+        },
+        detail: {
+          show: false
+        },
+        data:[{value: 0.5, name: 'gas'}]
       }
     ]
   };
-  myChart1.setOption(option);
+  myChart1.setOption(option2);
 };
 distributeByTypeChart();
 
@@ -144,7 +334,7 @@ let faultAnalysisChart = function() {
         axisLabel: {
           formatter: "{value}月"
         },
-        
+
       }
     ],
     yAxis: [
@@ -157,7 +347,7 @@ let faultAnalysisChart = function() {
         axisLabel: {
           formatter: "{value}"
         },
-        
+
       },
       {
         type: "value",
@@ -249,7 +439,7 @@ let mapChart = function() {
             show: true
           }
         },
-        
+
         itemStyle:{
           areaColor:'#0347ad',
           borderColor:"#0ec7ff",
@@ -314,7 +504,7 @@ let situationAnalysisChart = function() {
       {
         type: "value",
         name: "故障数",
-        
+
         axisLabel: {
           formatter: "{value}"
         }
@@ -395,12 +585,12 @@ let distributeByStatusChart = function() {
       left: 'center', // 相对父元素居中
       top: 'middle',  // 相对父元素居中
       style: {
-          fill: 'white',
-          text: 141,
-          fontSize: '28',        
+        fill: 'white',
+        text: 141,
+        fontSize: '28',
       }
     },
-    
+
     series: [
       {
         name: "",
@@ -420,7 +610,7 @@ let distributeByStatusChart = function() {
               lineHeight: 22,
               align: 'left',
             },
-            
+
           }
         },
         labelLine: {
@@ -437,17 +627,17 @@ let distributeByStatusChart = function() {
             name: "待处理",
             itemStyle:{
               color:'#162959'
-            }           
+            }
           },
           { value: 32, name: "已处理",
             itemStyle:{
               color:'#1ac2fa'
-            }  
+            }
           },
           { value: 58, name: "处理中",
             itemStyle:{
               color:'#23548b'
-            } 
+            }
           }
         ]
       }
@@ -460,85 +650,85 @@ distributeByStatusChart();
 let distributeByServerChart = function() {
   let option = {
     tooltip: {},
-    
+
     radar: [
-        {
-            indicator: [
-                { text: '主动服务',max:50 },
-                { text: '微信' ,max:50},
-                { text: '400电话',max:50 },
-                { text: '后台保障' ,max:50},
-                { text: 'QQ群' ,max:50},
-                { text: '人工服务',max:50 }
-            ],
-                       
-            startAngle: 30,
-            splitNumber: 4,
-            shape: 'circle',
-            name: {
-                formatter:'{value}',
-                textStyle: {
-                    color:'#1ab1ef'
-                }
-            },
-            splitArea: {
-                show:true,
-                areaStyle: {
-                    color: ['#051d64','#041d64', '#03185f','#021358'],
-                    shadowColor: '#0f3ba8',
-                    shadowBlur: 10
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#2c8ebe',
-                    type:'dashed'
-                }
-            },
-            splitLine: {
-                lineStyle: {
-                    color: 'transparent'
-                }
-            }
+      {
+        indicator: [
+          { text: '主动服务',max:50 },
+          { text: '微信' ,max:50},
+          { text: '400电话',max:50 },
+          { text: '后台保障' ,max:50},
+          { text: 'QQ群' ,max:50},
+          { text: '人工服务',max:50 }
+        ],
+
+        startAngle: 30,
+        splitNumber: 4,
+        shape: 'circle',
+        name: {
+          formatter:'{value}',
+          textStyle: {
+            color:'#1ab1ef'
+          }
         },
-        
+        splitArea: {
+          show:true,
+          areaStyle: {
+            color: ['#051d64','#041d64', '#03185f','#021358'],
+            shadowColor: '#0f3ba8',
+            shadowBlur: 10
+          }
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#2c8ebe',
+            type:'dashed'
+          }
+        },
+        splitLine: {
+          lineStyle: {
+            color: 'transparent'
+          }
+        }
+      },
+
     ],
     series: [
-        {
-            name: '服务分布',
-            type: 'radar',
-            itemStyle: {
-              color:'#1f9cf5',
-            },
-            label: {
-              normal: {
-                  show: true,
-                  color:'white',
-              }
-            },
-            areaStyle: {
-              normal: {
-                  opacity: 0.7,
-                  color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
-                      {
-                          color: '#093574',
-                          offset: 0
-                      },
-                      {
-                          color: '#093574',
-                          offset: 1
-                      }
-                  ])
-              }
-            },
-            data: [
-                {
-                    value: [21, 31, 25, 34, 12,21],
-                                    
-                }
-            ]
+      {
+        name: '服务分布',
+        type: 'radar',
+        itemStyle: {
+          color:'#1f9cf5',
         },
-        
+        label: {
+          normal: {
+            show: true,
+            color:'white',
+          }
+        },
+        areaStyle: {
+          normal: {
+            opacity: 0.7,
+            color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+              {
+                color: '#093574',
+                offset: 0
+              },
+              {
+                color: '#093574',
+                offset: 1
+              }
+            ])
+          }
+        },
+        data: [
+          {
+            value: [21, 31, 25, 34, 12,21],
+
+          }
+        ]
+      },
+
     ]
   }
   myChart6.setOption(option);
